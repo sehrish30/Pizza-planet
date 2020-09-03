@@ -2,6 +2,7 @@
     <div class="admin-wrapper">
         <div class="current-user-wrapper">
            <span>Logged in as:</span>
+           {{currentUser}}
            <button type="button" class="btn-red" @click.prevent="signOut">Sign out</button>
         </div>
         <NewPizza />
@@ -59,7 +60,9 @@
 <script>
 import NewPizza from './NewPizza';
 import Login from './Login';
-import {firebaseAuth} from '../firebase'
+import {store} from '../store/store'
+import {mapGetters} from 'vuex';
+
 
 export default {
     name: "admin",
@@ -67,13 +70,22 @@ export default {
         NewPizza,
         Login
     },
-        computed:{
-       getMenuItems(){
-         return this.$store.getters.getMenuItems
-       },
-       numberOfOrders(){
-         return this.$store.getters.numberOfOrders
-       }
+    computed:{
+        ...mapGetters([
+         'getMenuItems',
+         'numberOfOrders',
+         'currentUser'            
+        ])
+    //    getMenuItems(){
+    //      return this.$store.getters.getMenuItems
+    //    },
+    //    numberOfOrders(){
+    //      return this.$store.getters.numberOfOrders
+    //    },
+    //    currentUser(){
+    //        return this.$store.getters.currentUser
+    //    }
+
         },
     // data(){
     //   return {
@@ -88,11 +100,7 @@ export default {
     // },
     methods: {
         async signOut(){
-          try{
-            await firebaseAuth.signOut();
-          }catch(err){
-            alert(`error signing out ${err.message}`);
-          }
+          store.dispatch('signOut');
         }
     }
  }

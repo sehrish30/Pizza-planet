@@ -15,8 +15,7 @@
 </template>
 <script>
 
-import {firebaseAuth} from '../firebase'
-
+import {store} from '../store/store'
 
 export default {
     name: 'login',
@@ -27,22 +26,13 @@ export default {
       }
     },
     methods: {
-        async signIn(){
-          try{
-            await firebaseAuth.signInWithEmailAndPassword(
-                this.email,
-                this.password
-            )
-          }catch(err){
-            const errorCode= err.code;
-            const errorMessage = err.message;
-
-            if(errorCode === 'auth/wrong-password'){
-                alert('Incorrect password');
-            }else{
-                alert(errorMessage)
-            }
+        signIn(){
+          // user is the payload
+          const user ={
+            email: this.email,
+            password: this.password
           }
+          store.dispatch('signIn', user)
         }
     }
 }

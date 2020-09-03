@@ -36,18 +36,18 @@
             <tbody v-for="(item, index) in basket" :key="index">
               <tr>
                 <td>
-                  <button class="btn-yellow" @click="decreaseQuantity(item)">+</button>
+                  <button class="btn-yellow" @click="increaseQuantity(item)">+</button>
                   <span>{{ item.quantity }}</span>
-                  <button class="btn-yellow" @click="increaseQuantity(item)">−</button>
+                  <button class="btn-yellow" @click="decreaseQuantity(item)">−</button>
                 </td>
                 <td>{{item.name}} {{item.size}}"</td>
-                <td>BHD {{item.price * item.quantity}}</td>
+                <td>BHD {{Math.round(item.price * item.quantity)}}</td>
               </tr>
             </tbody>
           </table>
        
        <p>Order total:</p>
-       <button class="btn-yellow">Place Order</button>
+       <button class="btn-order" @click="addNewOrder">Place Order</button>
      </div>
      <div class="message-div" v-else>
         <p class="message">{{ basketText }}</p> 
@@ -60,18 +60,23 @@
 </template>
 
 <script>
+
+import {mapGetters} from 'vuex';
+
+
+
 export default {
     data(){
         return{
           basket: [],
-          basketText: 'Your basket is empty',
-            
+          basketText: 'Your basket is empty'
         }
     },
     computed:{
-       getMenuItems(){
-         return this.$store.getters.getMenuItems
-       },
+      ...mapGetters(["getMenuItems"])
+      //  getMenuItems(){
+      //    return this.$store.getters.getMenuItems
+      //  },
     },
     methods:{
       async addToBasket(item, option){
@@ -104,9 +109,15 @@ export default {
       },
       increaseQuantity(item){
         item.quantity++;
+      },
+      addNewOrder(){
+        // this.basket is payload sending to store mutation
+        this.$store.commit('addOrder', this.basket);
+        this.basket=[];
+        this.basketText= 'Thank you, your order has been placed :)';
       }
 
-    }
+    },
 }
 </script>
 
@@ -124,7 +135,7 @@ export default {
  
 
  .menu, .basket{
-     background-image: radial-gradient( circle 571px at 80.7% 35.3%,  rgba(162,213,242,1) 33.6%, rgba(64,168,196,1) 61.1% );
+     background-image: radial-gradient( circle farthest-corner at 8.7% 73.8%,  rgba(64,168,196,1) 0%, rgba(162,213,242,1) 51.1% );
      border-radius: 3px;
      height: 100%;
      margin: 10px;
@@ -179,6 +190,55 @@ hr{
 .empty-cart{
   width: 20vh;
 } 
+
+.btn-order{
+  position: relative;
+	display: inline-block;
+	font-size: 22px;
+	padding: 15px 50px;
+	color: white;
+	margin: 20px 10px 10px;
+	border-radius: 6px;
+	text-align: center;
+	transition: top .01s linear;
+  background: #ff4b5c;
+	text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+}
+
+.btn-order:hover{
+  background-color: #ff4b50;
+  cursor: pointer;
+}
+
+.btn-order:active {
+	top: 9px;
+}
+
+.btn-order {
+	background: #ff4b5c;
+	box-shadow: 0 0 0 1px #6698cb inset,
+				0 0 0 2px rgba(255,75,92,0.15) inset,
+				0 8px 0 0 rgba(237, 102, 99, .7),
+				0 8px 0 1px rgba(0,0,0,.4),
+				0 8px 8px 1px rgba(0,0,0,0.5);
+}
+
+.btn-order:active {
+	box-shadow: 0 0 0 1px #ff4b5c inset,
+				0 0 0 2px rgba(237,102,99,0.15) inset,
+				0 0 0 1px rgba(0,0,0,0.4);
+}
+
+.btn-yellow{
+  background-color: #e0ece4;
+  color: #ff4b5c;
+  border: 1px solid #ff4b5c;
+}
+
+.btn-yellow:focus{
+  outline:none;
+}
+
 
 @media screen and (min-width: 900px){
      .menu-wrapper{
