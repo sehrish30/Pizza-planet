@@ -8,6 +8,11 @@
       <router-link to="/about">About us</router-link> -->
     </div>
     <router-view/>
+    <div class="info-block-wrapper">
+      <router-view name="ordering-guide"></router-view>
+      <router-view name="delivery"></router-view>
+      <router-view name="history"></router-view>
+    </div>
   </div>
 </template>
 
@@ -46,5 +51,63 @@ export default {
  }
  span{
    margin: 0 5px;
+ }
+
+ .info-block-wrapper{
+   display: flex;
+   flex-direction: column;
+   background: #40a8c4;
+ }
+
+ .info-block{
+    text-align: center;
+    padding: 5rem;
+    margin: 10px auto;
+    color: #ffc93c;
+    font-family: 'Niconne', cursive;
+ }
+
+ .info-block-content p{
+   font-size: 2rem;
+ }
+
+ .info-block h3{
+   text-align: center
+ }
+
+ .info-block-content{
+   display: flex;
+   align-items: center;
+ }
+
+ .info-block img{
+   width: 30%;
+ }
+
+ @media (min-width: 900px){
+   .info-block{
+     width: 100%
+   }
+
+   .info-block-wrapper{
+     flex-direction: row;
+   }
+
+   .info-block:nth-child(2){
+   margin:10px;
+ }
+
+ .info-block:nth-child(2) img{
+   order: -1;
+ }
+
+   .info-block-content{
+     flex-direction: column;
+     align-items: center;
+   }
+
+   .info_block img{
+     max-width: 100%;
+   }
  }
 </style>

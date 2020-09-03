@@ -13,15 +13,3 @@ export default {
     name: "history"
 }
 </script>
-
-<style scoped>
-.info-block{
-    text-align: center;
-}
-
-p{
-    color: #ffc93c;
-    font-family: 'Niconne', cursive;
-    font-size: 1.5rem;
-}
-</style>

@@ -67,6 +67,17 @@ export default {
         NewPizza,
         Login
     },
+    // data(){
+    //   return {
+    //       name: 'Sehrish'
+    //   }
+    // },
+    // beforeRouteEnter(to,from,next){
+    //   //Once component is created we access the data model
+    //   next(vm =>{
+    //     alert(`Hi, ${vm.name}`);
+    //   })
+    // },
     methods: {
         async signOut(){
           try{
@@ -145,6 +156,21 @@ export default {
       margin: 3rem;
       font-family: 'Libre Baskerville', serif;
       color: #07689f;
+  }
+
+  .btn-red{
+      background-color: #f1f3de;
+      color: #cd0a0a;
+      padding: 5px;
+      outline: none;
+      border: 1px solid #cd0a0a;
+      border-radius: 2px;
+      cursor: pointer;
+  }
+
+  span{
+      color: #8d93ab;
+      font-family: 'Libre Baskerville', serif;
   }
 
 </style>

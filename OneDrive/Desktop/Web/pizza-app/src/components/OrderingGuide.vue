@@ -13,11 +13,3 @@ export default {
     name: "orderingGuide"
 }
 </script>
-
-<style scoped>
-.info-block{
-    text-align: center;
-    color: #ffc93c;
-    font-family: 'Niconne', cursive;
-}
-</style>
