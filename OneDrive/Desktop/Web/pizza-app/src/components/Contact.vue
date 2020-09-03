@@ -27,6 +27,7 @@ export default {
      .contact-wrapper{
          text-align: center;
          background: #d6e0f0;
+         
          height: 100vh;
          margin: 10px auto;
          padding: 10px;

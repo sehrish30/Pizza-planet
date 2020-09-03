@@ -14,9 +14,9 @@
                           <th class="heading-item">Remove from Menu</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody v-for="item in getMenuItems" :key="item.id">
                         <tr class="content">
-                            <td>Magherita</td>
+                            <td>{{item.name}}</td>
                             <td class="content-item">
                                 <button type="button" class="btn-red">&times;</button>
                             </td>
@@ -25,7 +25,7 @@
                  </table>
             </div>
             <div class="orders-wrapper">
-               <h3>Current orders (3):</h3>
+               <h3>Current orders ({{numberOfOrders}}):</h3>
                <table>
                    <thead class="heading">
                        <tr>
@@ -67,6 +67,14 @@ export default {
         NewPizza,
         Login
     },
+        computed:{
+       getMenuItems(){
+         return this.$store.getters.getMenuItems
+       },
+       numberOfOrders(){
+         return this.$store.getters.numberOfOrders
+       }
+        },
     // data(){
     //   return {
     //       name: 'Sehrish'
@@ -87,13 +95,15 @@ export default {
           }
         }
     }
-}
+ }
+
 </script>
 
 <style scoped>
   .admin-wrapper{
       margin: 10px;
-      background-color: #d6e0f0;
+      background-color: #e0ece4;
+      background: url("../assets/images/bg.png");
       text-align: center;
   }
 

@@ -56,7 +56,9 @@ export default {
  .info-block-wrapper{
    display: flex;
    flex-direction: column;
-   background: #40a8c4;
+   background: #e0ece4;
+   background-image: url("./assets/images/bg.png");
+   
  }
 
  .info-block{
@@ -86,7 +88,7 @@ export default {
 
  @media (min-width: 900px){
    .info-block{
-     width: 100%
+     max-width: 100%;
    }
 
    .info-block-wrapper{

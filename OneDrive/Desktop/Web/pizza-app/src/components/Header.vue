@@ -64,7 +64,15 @@ h1{
 }
 
 .header_logo{
-    background-image: radial-gradient( circle farthest-corner at 3.1% 8.2%,  rgba(248,250,107,1) 0%, rgba(238,148,148,1) 98.2% );
+     background-image: linear-gradient(
+    45deg,
+    #ffc93c 25%,
+    #07689f 25% 50%,
+    #40a8c4 50% 75%,
+    #a2d5f2 75%,
+    #ff4b5c 100%
+  );
+    /* background-image: radial-gradient( circle farthest-corner at 3.1% 8.2%,  rgba(248,250,107,1) 0%, rgba(238,148,148,1) 98.2% ); */
     background-size: cover;
     display: flex;
     flex-direction: column;
