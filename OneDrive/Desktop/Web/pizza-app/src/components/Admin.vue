@@ -1,8 +1,9 @@
 <template>
     <div class="admin-wrapper">
+        <section v-if="currentUser!==null">
         <div class="current-user-wrapper">
-           <span>Logged in as:</span>
-           {{currentUser}}
+           <span>Logged in as:
+           {{currentUser}}</span>
            <button type="button" class="btn-red" @click.prevent="signOut">Sign out</button>
         </div>
         <NewPizza />
@@ -19,7 +20,7 @@
                         <tr class="content">
                             <td>{{item.name}}</td>
                             <td class="content-item">
-                                <button type="button" class="btn-red">&times;</button>
+                                <button type="button" class="btn-red" @click="removeMenuItem(item.id)">&times;</button>
                             </td>
                         </tr>
                     </tbody>
@@ -40,7 +41,7 @@
                        <tr class="order-number">
                           <th colspan="4" class="order-number-item">
                               <strong>Order Number: {{index+1}}</strong>
-                              <button type="button" class="btn-red">&times;</button>
+                              <button type="button" class="btn-red" @click="removeOrder(order.id)">&times;</button>
                           </th>
                        </tr>
                        <tr v-for="orderItem in order.pizzas" :key="orderItem.id" class="content">
@@ -52,8 +53,8 @@
                    </tbody>
                </table>
             </div>
-        
-        <Login />
+        </section>
+      <Login v-if="currentUser ==null" />
     </div>
 </template>
 
@@ -102,6 +103,12 @@ export default {
     methods: {
         async signOut(){
           store.dispatch('signOut');
+        },
+        removeMenuItem(id){
+            store.dispatch('removeMenuItem', id);
+        },
+        removeOrder(id){
+            store.dispatch('removeOrder', id);
         }
     }
  }
@@ -138,6 +145,10 @@ export default {
       align-items: center;
       text-align: center;
       margin: 0 auto;
+  }
+
+  .orders-wrapper{
+      margin-bottom: 3rem;
   }
 
   .order-number th{

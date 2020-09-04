@@ -36,9 +36,10 @@
             <tbody v-for="(item, index) in basket" :key="index">
               <tr>
                 <td>
-                  <button class="btn-yellow" @click="increaseQuantity(item)">+</button>
-                  <span>{{ item.quantity }}</span>
                   <button class="btn-yellow" @click="decreaseQuantity(item)">−</button>
+                  <span>{{ item.quantity }}</span>
+                  <button class="btn-yellow" @click="increaseQuantity(item)">+</button>
+                  
                 </td>
                 <td>{{item.name}} {{item.size}}"</td>
                 <td>BHD {{Math.round(item.price * item.quantity)}}</td>
@@ -46,12 +47,14 @@
             </tbody>
           </table>
        
-       <p>Order total:</p>
+       <p class="total-heading">Total: <span class="price">{{total}}</span> bd</p>
        <button class="btn-order" @click="addNewOrder">Place Order</button>
      </div>
      <div class="message-div" v-else>
         <p class="message">{{ basketText }}</p> 
-        <img class="empty-cart" src="../assets/images/empty.svg" alt="empty cart"/>
+      <img v-if="basketImage=='empty'" class="empty-cart" src="../assets/images/empty.svg">
+      <img v-else class="empty-cart" src="../assets/images/success.svg"/>
+        <!-- <img class="empty-cart" src="../assets/images/empty.svg" alt="empty cart"/> -->
       <div>   
      </div> 
  </div>
@@ -68,11 +71,19 @@ export default {
     data(){
         return{
           basket: [],
+          basketImage:'empty',
           basketText: 'Your basket is empty'
         }
     },
     computed:{
-      ...mapGetters(["getMenuItems"])
+      ...mapGetters(["getMenuItems"]),
+      total(){
+        let totalCost=0;
+        this.basket.map(item=> {
+          totalCost += item.quantity * item.price
+        })
+        return totalCost;
+      }
       //  getMenuItems(){
       //    return this.$store.getters.getMenuItems
       //  },
@@ -119,6 +130,7 @@ export default {
         // this.basket is payload sending to store mutation
         // this.$store.commit('addOrder', this.basket);
         this.basket=[];
+        this.basketImage='success',
         this.basketText= 'Thank you, your order has been placed :)';
       }
 
@@ -238,10 +250,22 @@ hr{
   background-color: #e0ece4;
   color: #ff4b5c;
   border: 1px solid #ff4b5c;
+  cursor: pointer;
 }
 
 .btn-yellow:focus{
   outline:none;
+}
+
+.total-heading{
+   font-family: 'Niconne', cursive;
+   font-size: 2rem;
+   color: #07689f
+}
+
+.price{
+  color: #111d5e;
+  font-size: 4.5rem;
 }
 
 
