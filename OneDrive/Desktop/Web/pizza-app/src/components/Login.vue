@@ -49,12 +49,18 @@ export default {
  label{
    color: #07689f;
    font-family: 'Libre Baskerville', serif;
+   display: block;
+   margin-bottom: 10px;
+   text-align: center;
  }
 
  .login-wrapper {
-    margin: 10px;
-    background-color: #e0ece4;
-    text-align: center;
+      margin: 10px 0;
+      padding: 10px;
+      border: solid 1px #f79e38;
+      background: url("../assets/images/bg.png");
+      justify-content: center;
+      margin: 0 auto; 
 }
 
  form {
@@ -70,6 +76,11 @@ export default {
     border: solid 1px #f79e38;
     font-family: 'Libre Baskerville', serif;
     color: #07689f;
+}
+
+input:focus, textarea:focus{
+  background-color: #decdc3;
+  outline:none;
 }
 
 .add-button {

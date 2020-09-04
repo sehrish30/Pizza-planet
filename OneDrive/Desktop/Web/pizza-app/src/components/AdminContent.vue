@@ -126,8 +126,7 @@ export default {
       padding: 10px;
       border: solid 1px #f79e38;
       justify-content: center;
-      margin: 0 auto;
-      
+      margin: 0 auto; 
   }
 
   table{
