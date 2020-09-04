@@ -45,4 +45,47 @@ export default {
    font-family: 'Niconne', cursive;
    font-size: 2.5rem;
  }
+
+ label{
+   color: #07689f;
+   font-family: 'Libre Baskerville', serif;
+ }
+
+ .login-wrapper {
+    margin: 10px;
+    background-color: #e0ece4;
+    text-align: center;
+}
+
+ form {
+    display: block;
+    margin-top: 0em;
+}
+
+ input, textarea {
+    width: 50%;
+    padding: 10px;
+    box-sizing: border-box;
+    background: transparent;
+    border: solid 1px #f79e38;
+    font-family: 'Libre Baskerville', serif;
+    color: #07689f;
+}
+
+.add-button {
+    background: #ffc93c;
+    border: 0;
+    border-right: 5px solid #07689f;
+    border-left: 5px solid #07689f;
+    font-family: 'Libre Baskerville', serif;
+    width: 10rem;
+    height: 3rem;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #07689f;
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    transition: all .5s ease-in;
+    outline: none;
+}
 </style>

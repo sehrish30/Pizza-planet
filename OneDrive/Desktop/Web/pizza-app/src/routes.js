@@ -1,8 +1,13 @@
 import Home from './components/Home'
 import Menu from './components/Menu'
+
+// Now use webpack dynamic syntax routing
+// const Menu= ()=> import('./components/Menu')
 import Admin from './components/Admin'
 import About from './components/About'
+// const About =() => import(/* webpackChunkName: "menuGroup" */  './components/About')
 import Contact from './components/Contact'
+// const Contact =() => import(/* webpackChunkName: "menuGroup" */ './components/Contact');
 import History from './components/History'
 import Delivery from './components/Delivery'
 import OrderingGuide from './components/OrderingGuide'
