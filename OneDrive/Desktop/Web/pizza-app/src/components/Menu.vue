@@ -18,7 +18,7 @@
                   </tr>
                   <tr v-for="(option, index ) in item.options" :key="option[index]">
                       <td class="red-views"> {{ option.size}}" </td>
-                      <td class="red-views">BHD {{option.price}}</td>
+                      <td class="red-views"> {{option.price | currency}}</td>
                       <td>
                           <button type="button" class="btn-yellow" @click="addToBasket(item, option)">+</button>
                       </td>
@@ -42,12 +42,12 @@
                   
                 </td>
                 <td>{{item.name}} {{item.size}}"</td>
-                <td>BHD {{Math.round(item.price * item.quantity)}}</td>
+                <td>BHD {{item.price * item.quantity | currency }}</td>
               </tr>
             </tbody>
           </table>
        
-       <p class="total-heading">Total: <span class="price">{{total}}</span> bd</p>
+       <p class="total-heading">Total: <span class="price">{{total | currency}}</span></p>
        <button class="btn-order" @click="addNewOrder">Place Order</button>
      </div>
      <div class="message-div" v-else>
@@ -233,7 +233,7 @@ hr{
 
 .btn-order {
 	background: #ff4b5c;
-	box-shadow: 0 0 0 1px #6698cb inset,
+	box-shadow: 0 0 0 1px #ff4b5c inset,
 				0 0 0 2px rgba(255,75,92,0.15) inset,
 				0 8px 0 0 rgba(237, 102, 99, .7),
 				0 8px 0 1px rgba(0,0,0,.4),

@@ -1,5 +1,6 @@
 <template>
     <div class="login-wrapper">
+      <p class="admin-heading">Login for admin privilges!</p>
         <form>
            <div>
              <label for="email">Email address</label>
@@ -37,3 +38,11 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+ .admin-heading{
+   color: #40a8c4;
+   font-family: 'Niconne', cursive;
+   font-size: 2.5rem;
+ }
+</style>

@@ -48,7 +48,7 @@
                            <td class="content-item">{{orderItem.name}}</td>
                            <td class="content-item">{{orderItem.size}}"</td>
                            <td class="content-item">{{orderItem.quantity}}</td>
-                           <td class="content-item">BHD {{orderItem.price}}</td>
+                           <td class="content-item">{{orderItem.price | currency}}</td>
                        </tr>
                    </tbody>
                </table>
@@ -109,6 +109,15 @@ export default {
         },
         removeOrder(id){
             store.dispatch('removeOrder', id);
+        }
+    },
+
+    beforeRouteLeave: (to, from, next)=>{
+        if(confirm('you will be logged out when leaving admin?')==true){
+            store.dispatch('signOut');
+            next();
+        }else{
+            next(false);
         }
     }
  }

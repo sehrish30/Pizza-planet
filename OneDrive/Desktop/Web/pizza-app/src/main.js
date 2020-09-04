@@ -3,6 +3,7 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import {routes} from './routes';
 import {store} from './store/store'
+import Accounting from 'accounting-js'
 
 
 // Vue.config.productionTip = false
@@ -37,6 +38,11 @@ const router = new VueRouter({
 //     next(false);
 //   }
 // })
+
+// format currency using accounting-js npm package
+// global filter can be used in any component
+// , { symbol: "BD"} after val for customized currency
+Vue.filter('currency', val => Accounting.formatMoney(val));
 
 new Vue({
   router,

@@ -92,6 +92,7 @@ export default {
    width: 30%;
  }
 
+
  @media (min-width: 900px){
    .info-block{
      max-width: 100%;
