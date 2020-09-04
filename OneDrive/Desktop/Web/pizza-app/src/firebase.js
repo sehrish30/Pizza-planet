@@ -17,3 +17,4 @@ const db= firebase.firestore()
 
 export const firebaseAuth= firebase.auth();
 export const dbMenuRef = db.collection('menu');
+export const dbOrdersRef = db.collection('orders');

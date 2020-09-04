@@ -62,8 +62,7 @@
 <script>
 
 import {mapGetters} from 'vuex';
-
-
+import {store} from '../store/store'
 
 export default {
     data(){
@@ -111,8 +110,14 @@ export default {
         item.quantity++;
       },
       addNewOrder(){
+        const order={
+          pizzas: {...this.basket},
+          createdAt: new Date(),
+        };
+
+        store.dispatch("addNewOrder", order);
         // this.basket is payload sending to store mutation
-        this.$store.commit('addOrder', this.basket);
+        // this.$store.commit('addOrder', this.basket);
         this.basket=[];
         this.basketText= 'Thank you, your order has been placed :)';
       }

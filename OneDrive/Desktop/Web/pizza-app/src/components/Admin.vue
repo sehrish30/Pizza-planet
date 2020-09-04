@@ -36,18 +36,18 @@
                            <th class="heading-item">Price</th>
                        </tr>
                    </thead>
-                   <tbody>
+                   <tbody v-for="(order, index) in getOrders" :key="order.id">
                        <tr class="order-number">
                           <th colspan="4" class="order-number-item">
-                              <strong>Order Number: 4</strong>
+                              <strong>Order Number: {{index+1}}</strong>
                               <button type="button" class="btn-red">&times;</button>
                           </th>
                        </tr>
-                       <tr class="content">
-                           <td class="content-item">Sehrish Waheed</td>
-                           <td class="content-item">9"</td>
-                           <td class="content-item">2</td>
-                           <td class="content-item">BHD 50</td>
+                       <tr v-for="orderItem in order.pizzas" :key="orderItem.id" class="content">
+                           <td class="content-item">{{orderItem.name}}</td>
+                           <td class="content-item">{{orderItem.size}}"</td>
+                           <td class="content-item">{{orderItem.quantity}}</td>
+                           <td class="content-item">BHD {{orderItem.price}}</td>
                        </tr>
                    </tbody>
                </table>
@@ -74,7 +74,8 @@ export default {
         ...mapGetters([
          'getMenuItems',
          'numberOfOrders',
-         'currentUser'            
+         'currentUser',
+         "getOrders"          
         ])
     //    getMenuItems(){
     //      return this.$store.getters.getMenuItems

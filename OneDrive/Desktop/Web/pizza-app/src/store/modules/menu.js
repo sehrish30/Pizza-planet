@@ -1,39 +1,7 @@
+import {firestoreAction} from 'vuexfire'
+import {dbMenuRef} from '../../firebase'
 const state={
-    menuItems:{
-        1: {
-            'name': 'Margherita',
-            'description': 'A delicious tomato based pizza topped with mozzarella',
-            'options': [{
-            'size': 9,
-            'price': 6.95
-            }, {
-            'size': 12,
-            'price': 10.95
-            }]
-        },
-        2: {
-            'name': 'Pepperoni',
-            'description': 'A delicious tomato based pizza topped with mozzarella and pepperoni',
-            'options': [{
-            'size': 9,
-            'price': 7.95
-            }, {
-            'size': 12,
-            'price': 12.95
-            }]
-            },
-        3: {
-            'name': 'Ham and Pineapple',
-            'description': 'A delicious tomato based pizza topped with mozzarella, ham and pineapple',
-            'options': [{
-            'size': 9,
-            'price': 7.95
-            }, {
-            'size': 12,
-            'price': 12.95
-            }]
-            }
- },
+  menuItems: []
 }
 
 const getters={
@@ -41,6 +9,20 @@ const getters={
 }
 
 const actions={
+  // wrap it in firebase action. This wraps action so we can use vuefire.
+  // keep data in sync and bind with menuItems state
+  // it doesnot change state it just binds dispatch in App.vue
+  // addMenu is dispatched from newPizza.vue
+  setMenuRef: firestoreAction(context=>{
+      return context.bindFirestoreRef('menuItems', dbMenuRef)
+  }),
+  addMenuItem: async(context, pizza)=>{
+    try{
+      await dbMenuRef.add(pizza);
+    }catch(err){
+         alert(`Err creating new pizza ${err}`)
+    }
+}
 
 }
 

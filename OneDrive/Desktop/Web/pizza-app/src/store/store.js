@@ -6,6 +6,7 @@ import Vuex from 'vuex';
 import menu from './modules/menu';
 import users from './modules/users';
 import orders from './modules/orders';
+import {vuexfireMutations} from 'vuexfire';
 
 
 // commit comes from context
@@ -14,6 +15,10 @@ import orders from './modules/orders';
 Vue.use(Vuex);
 
 export const store= new Vuex.Store({
+
+    // inject mutations in to the root of the store
+    mutations: vuexfireMutations, 
+
    modules: {
        menu,
        orders,
